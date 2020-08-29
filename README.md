@@ -30,13 +30,14 @@
 
 ## 核心原理
 
-1. 加载DLL模块 **api-ms-win-crt-utility-l1-1-1.dll**[^1]
-2. Patch上述模块的进程文件校验[^2]
+1. 加载DLL模块 **api-ms-win-crt-utility-l1-1-1.dll**<sup>[1](#t1)</sup>
+2. Patch上述模块的进程文件校验<sup>[1](#t2)</sup>
 3. 根据逆向得到的通信协议**动态**调用上述DLL模块的加解密函数
 4. 完成通信，使用返回的令牌登录服务器
 
-[^1]: 主要功能是负责通信的加解密，文件名起混淆作用
-[^2]: 核心模块内存Patch
+<a name="t1">1</a>: 主要功能是负责通信的加解密，文件名起混淆作用
+
+<a name="t2">2</a>: 核心模块内存Patch
 
 ```c#
     public static int FindAddr(IntPtr PHandle, int ProcAddr, uint findSize)
